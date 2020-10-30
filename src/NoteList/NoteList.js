@@ -22,6 +22,8 @@ class NoteList extends Component {
               noteName={dummyNotes[i].name}
               dateModified={dummyNotes[i].modified}
               folderId={dummyNotes[i].folderId}
+              handleNoteSelect={this.props.handleNoteSelect}
+              noteId={dummyNotes[i].id}
             />
             {/* <NoteInfo
               noteContent={dummyNotes[i].content}
@@ -41,6 +43,8 @@ class NoteList extends Component {
               noteName={filteredCards[i].name}
               dateModified={filteredCards[i].modified}
               folderId={filteredCards[i].folderId}
+              handleNoteSelect={this.props.handleNoteSelect}
+              noteId={dummyNotes[i].id}
             />
             {/* <NoteInfo
               noteContent={dummyNotes[i].content}

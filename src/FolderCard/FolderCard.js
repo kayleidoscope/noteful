@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './FolderCard.css';
 
 function FolderCard(props) {
@@ -7,12 +8,13 @@ function FolderCard(props) {
     const currentFolder = props.currentFolder;
   return (
     <li>
-        <button 
+        <Link 
+          to={`/folder/${folderName}`}
           onClick={() => {props.handleFolderSelect(props.folderId)}}
           className={`folder-card ${(folderId === currentFolder) ? "selected" : ""}`}
         >
           {folderName}
-        </button>
+        </Link>
     </li>
   );
 }

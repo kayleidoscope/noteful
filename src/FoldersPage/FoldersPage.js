@@ -8,7 +8,7 @@ class FoldersPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          folder: "b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1",
+          folder: "",
         };
     }
 
@@ -31,6 +31,7 @@ class FoldersPage extends Component {
             <NoteList
                 dummyStore={this.props.dummyStore}
                 currentFolder={this.state.folder}
+                handleNoteSelect={this.props.handleNoteSelect}
             />
             </div>
         );

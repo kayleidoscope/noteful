@@ -5,15 +5,9 @@ import '../Page/Page.css';
 import './Sidebar.css';
 
 class Sidebar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      goBack: false,
-    };
-  }
 
   render() {
-    if (this.state.goBack) {
+    if (this.props.goBack) {
       return (
         <aside className="page-sidebar">
           <GoBack />

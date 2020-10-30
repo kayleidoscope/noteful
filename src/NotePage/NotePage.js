@@ -5,34 +5,23 @@ import NoteInfo from '../NoteInfo/NoteInfo';
 import './NotePage.css';
 
 class NotePage extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          card: "d26e1074-ffaf-11e8-8eb2-f2801f1b9fd1",
-        };
-    }
-
-    folderSelect = (folder) => {
-        console.log("folder clicked!")
-        this.setState({
-            folder
-        })
-        console.log(this.state.folder)
-    }
-    
     render() {
+        const currentNote = this.props.currentNote;
+        const currentFolder = this.props.currentFolder;
         const dummyNotes = this.props.dummyStore.notes;
         let thisCard = Object.keys(dummyNotes).map((note, i) => {
-            if(dummyNotes[i].id === this.state.card) {
+            if(dummyNotes[i].id === currentNote) {
+                console.log(dummyNotes[i].id)
+                console.log(currentNote)
                 return (
                     <div className="note-route-main">
                         <NoteCard
                             noteName={dummyNotes[i].name}
                             dateModified={dummyNotes[i].modified}
                             folderId={dummyNotes[i].folderId}
-                            selectedCard={this.state.card}
+                            currentNote={currentNote}
                             page="note"
+                            noteId={dummyNotes[i].id}
                         /> 
                         <NoteInfo
                             noteContent={dummyNotes[i].content}
@@ -46,9 +35,10 @@ class NotePage extends Component {
             <div className="folders-page-group">
                 <Sidebar
                     dummyStore={this.props.dummyStore}
-                    handleFolderSelect={this.folderSelect}
-                    currentFolder={this.state.folder}
+                    handleFolderSelect={this.props.handleFolderSelect}
+                    currentFolder={currentFolder}
                     page="note"
+                    goBack={true}
                 />
                 {thisCard}
             </div>
