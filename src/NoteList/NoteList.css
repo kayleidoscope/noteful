@@ -1,0 +1,12 @@
+.page-ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.addcard-button {
+    border: 2px solid;
+    padding: 5px;
+    display: block;
+    width: 100px;
+    margin-left: 15px;
+}

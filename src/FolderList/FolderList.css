@@ -1,0 +1,11 @@
+.folder-list {
+    padding-left: 0;
+}
+
+.addfolder-button {
+    border: 2px solid;
+    padding: 5px;
+    display: block;
+    margin: auto;
+    width: 100px;
+}
