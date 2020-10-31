@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       folder: "all",
-      note: "d26e1074-ffaf-11e8-8eb2-f2801f1b9fd1",
+      note: "",
     };
   }
 
@@ -28,7 +28,6 @@ class App extends Component {
   }
 
   noteSelect = (note) => {
-    console.log(note)
     this.setState({
       note
     })
@@ -52,24 +51,27 @@ class App extends Component {
           }
         />
         <Route
-          path="/folder"
-          render={() =>
+          path="/folder/:folderName"
+          render={(props) =>
             <FoldersPage
+            currentFolder={this.state.folder}
             dummyStore={dummyStore}
             handleFolderSelect={this.folderSelect}
             handleNoteSelect={this.noteSelect}
+            match={props.match}
             />
           }
           />
         <Route
-            path="/note"
-            render={() => 
+            path="/note/:noteName"
+            render={(props) =>
               <NotePage
                 dummyStore={dummyStore}
-                currentNote={this.state.note}
-                currentFolder={this.state.folder}
+                currentFolderId={this.state.folder}
                 handleFolderSelect={this.folderSelect}
                 handleNoteSelect={this.noteSelect}
+                history={props.history}
+                match={props.match}
               />
             }
         />
@@ -79,13 +81,3 @@ class App extends Component {
 }
 
 export default App;
-
-/*
-main > important = BLANK NOTE LIST
-> important = ok
-> super = ok
-> spangley = ok
-
-
-
-*/

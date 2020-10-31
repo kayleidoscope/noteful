@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './GoBack.css';
 
-class GoBack extends Component {
-  render() {
+export default function GoBack(props) {
     return (
       <div>
-        <button className="goback-button">
+        <button 
+          className="goback-button"
+          onClick={() => props.history.goBack()}
+        >
           Go Back
         </button>
       </div>
     );
   }
-}
 
-export default GoBack;
+  GoBack.defaultProps = {
+    history: {
+      goBack: () => {}
+    }
+  }

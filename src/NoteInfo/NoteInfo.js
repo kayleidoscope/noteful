@@ -1,5 +1,4 @@
 import React from 'react';
-import NoteCard from '../NoteCard/NoteCard';
 import './NoteInfo.css';
 
 function NoteInfo(props) {

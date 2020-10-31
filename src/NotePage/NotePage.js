@@ -6,30 +6,10 @@ import './NotePage.css';
 
 class NotePage extends Component {
     render() {
-        const currentNote = this.props.currentNote;
+        const noteName = this.props.match.params.noteName;
         const currentFolder = this.props.currentFolder;
         const dummyNotes = this.props.dummyStore.notes;
-        let thisCard = Object.keys(dummyNotes).map((note, i) => {
-            if(dummyNotes[i].id === currentNote) {
-                console.log(dummyNotes[i].id)
-                console.log(currentNote)
-                return (
-                    <div className="note-route-main">
-                        <NoteCard
-                            noteName={dummyNotes[i].name}
-                            dateModified={dummyNotes[i].modified}
-                            folderId={dummyNotes[i].folderId}
-                            currentNote={currentNote}
-                            page="note"
-                            noteId={dummyNotes[i].id}
-                        /> 
-                        <NoteInfo
-                            noteContent={dummyNotes[i].content}
-                        />
-                    </div>
-                )
-            }
-        })
+        const currentNote = dummyNotes.find(note => note.name === noteName)
 
         return (
             <div className="folders-page-group">
@@ -38,18 +18,26 @@ class NotePage extends Component {
                     handleFolderSelect={this.props.handleFolderSelect}
                     currentFolder={currentFolder}
                     page="note"
-                    goBack={true}
+                    canGoBack={true}
+                    history={this.props.history}
                 />
-                {thisCard}
+                <div className="note-route-main" key={currentNote.id}>
+                    <NoteCard
+                            noteName={currentNote.name}
+                            dateModified={currentNote.modified}
+                            folderId={currentNote.folderId}
+                            currentNote={currentNote}
+                            page="note"
+                            noteId={currentNote.id}
+                            handleNoteSelect={this.props.handleNoteSelect}
+                        /> 
+                        <NoteInfo
+                            noteContent={currentNote.content}
+                        />
+                </div>
             </div>
         );
         }
 }
 
 export default NotePage;
-
-/* 
-
-I'll need to add a new state that's for what notecard has been clicked.
-
-*/

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import NoteCard from '../NoteCard/NoteCard';
-import NoteInfo from '../NoteInfo/NoteInfo';
 import '../Page/Page.css';
 import './NoteList.css';
 
@@ -25,9 +24,6 @@ class NoteList extends Component {
               handleNoteSelect={this.props.handleNoteSelect}
               noteId={dummyNotes[i].id}
             />
-            {/* <NoteInfo
-              noteContent={dummyNotes[i].content}
-            /> */}
           </div>
         )
       })
@@ -44,11 +40,8 @@ class NoteList extends Component {
               dateModified={filteredCards[i].modified}
               folderId={filteredCards[i].folderId}
               handleNoteSelect={this.props.handleNoteSelect}
-              noteId={dummyNotes[i].id}
+              noteId={filteredCards[i].id}
             />
-            {/* <NoteInfo
-              noteContent={dummyNotes[i].content}
-            /> */}
           </div>
         )
       })

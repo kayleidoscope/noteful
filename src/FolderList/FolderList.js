@@ -12,7 +12,7 @@ class FolderList extends Component {
         key={dummyFolders[i].id}
         folderId={dummyFolders[i].id}
         handleFolderSelect={this.props.handleFolderSelect}
-        currentFolder={this.props.currentFolder}
+        currentFolderId={this.props.currentFolderId}
       />
     })
     return (

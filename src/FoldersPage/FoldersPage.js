@@ -4,33 +4,24 @@ import NoteList from '../NoteList/NoteList';
 import './FoldersPage.css';
 
 class FoldersPage extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          folder: "",
-        };
-    }
-
-    folderSelect = (folder) => {
-        console.log("folder clicked!")
-        this.setState({
-            folder
-        })
-        console.log(this.state.folder)
-    }
-
+    
     render() {
+        const dummyFolders = this.props.dummyStore.folders;
+        const folderName = this.props.match.params.folderName;
+        const currentFolder = dummyFolders.find(folder => folder.name === folderName);
+
         return (
             <div className="folders-page-group">
             <Sidebar
                 dummyStore={this.props.dummyStore}
-                handleFolderSelect={this.folderSelect}
-                currentFolder={this.state.folder}
+                handleFolderSelect={this.props.handleFolderSelect}
+                currentFolderId={this.props.currentFolder}
+                folderSidebar={true}
+                folderName={currentFolder.name}
             />
             <NoteList
                 dummyStore={this.props.dummyStore}
-                currentFolder={this.state.folder}
+                currentFolder={this.props.currentFolder}
                 handleNoteSelect={this.props.handleNoteSelect}
             />
             </div>

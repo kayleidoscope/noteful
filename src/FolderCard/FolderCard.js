@@ -5,13 +5,13 @@ import './FolderCard.css';
 function FolderCard(props) {
     const folderName = props.folderName;
     const folderId = props.folderId;
-    const currentFolder = props.currentFolder;
+    const currentFolderId = props.currentFolderId;
   return (
     <li>
         <Link 
           to={`/folder/${folderName}`}
           onClick={() => {props.handleFolderSelect(props.folderId)}}
-          className={`folder-card ${(folderId === currentFolder) ? "selected" : ""}`}
+          className={`folder-card ${(folderId === currentFolderId) ? "selected" : ""}`}
         >
           {folderName}
         </Link>
