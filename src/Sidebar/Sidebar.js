@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import FolderList from '../FolderList/FolderList';
+import Context from '../context';
 import GoBack from '../GoBack/GoBack';
 import '../Page/Page.css';
 import './Sidebar.css';
 
 class Sidebar extends Component {
+  static contextType = Context;
+
   render() {
     if (this.props.canGoBack) {
       return (
@@ -16,11 +19,7 @@ class Sidebar extends Component {
       const folderName = this.props.folderName;
       return (
         <aside className="page-sidebar">
-          <FolderList
-            dummyStore={this.props.dummyStore}
-            handleFolderSelect={this.props.handleFolderSelect}
-            currentFolderId={this.props.currentFolderId}
-          />
+          <FolderList/>
           <h3 className="sidebar-folder-name">
             Folder selected: <br/>
             {folderName}</h3>
@@ -29,11 +28,7 @@ class Sidebar extends Component {
     } else {
       return (
         <aside className="page-sidebar">
-          <FolderList
-            dummyStore={this.props.dummyStore}
-            handleFolderSelect={this.props.handleFolderSelect}
-            currentFolder={this.props.currentFolder}
-          />
+          <FolderList/>
         </aside>
       );
     }

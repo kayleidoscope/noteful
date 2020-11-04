@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import NoteCard from '../NoteCard/NoteCard';
 import NoteInfo from '../NoteInfo/NoteInfo';
+import Context from '../context';
 import './NotePage.css';
 
 class NotePage extends Component {
+    static contextType = Context;
+
     render() {
         const noteName = this.props.match.params.noteName;
-        const currentFolder = this.props.currentFolder;
-        const dummyNotes = this.props.dummyStore.notes;
+        const dummyNotes = this.context.notesStore;
         const currentNote = dummyNotes.find(note => note.name === noteName)
 
         return (
             <div className="folders-page-group">
                 <Sidebar
-                    dummyStore={this.props.dummyStore}
-                    handleFolderSelect={this.props.handleFolderSelect}
-                    currentFolder={currentFolder}
                     page="note"
                     canGoBack={true}
                     history={this.props.history}
@@ -29,7 +28,7 @@ class NotePage extends Component {
                             currentNote={currentNote}
                             page="note"
                             noteId={currentNote.id}
-                            handleNoteSelect={this.props.handleNoteSelect}
+                            match={this.props.match}
                         /> 
                         <NoteInfo
                             noteContent={currentNote.content}

@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import FolderCard from '../FolderCard/FolderCard';
+import Context from '../context';
 import './FolderList.css';
 
 class FolderList extends Component {
+  static contextType = Context;
+
   render() {
-    const dummyStore = this.props.dummyStore;
-    const dummyFolders = dummyStore.folders;
+    const dummyFolders = this.context.foldersStore;
     const folderCardList = Object.keys(dummyFolders).map((folder, i) => {
       return <FolderCard
         folderName={dummyFolders[i].name}
         key={dummyFolders[i].id}
-        folderId={dummyFolders[i].id}
-        handleFolderSelect={this.props.handleFolderSelect}
-        currentFolderId={this.props.currentFolderId}
-      />
+        folderId={dummyFolders[i].id}/>
     })
     return (
       <div>

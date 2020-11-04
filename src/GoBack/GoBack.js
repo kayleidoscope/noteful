@@ -2,6 +2,7 @@ import React from 'react';
 import './GoBack.css';
 
 export default function GoBack(props) {
+
     return (
       <div>
         <button 

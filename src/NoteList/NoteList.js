@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import NoteCard from '../NoteCard/NoteCard';
+import Context from '../context';
 import '../Page/Page.css';
 import './NoteList.css';
 
 class NoteList extends Component {
+  static contextType = Context;
 
   render() {
-    const dummyStore = this.props.dummyStore;
-    const dummyNotes = dummyStore.notes;
+    const dummyNotes = this.context.notesStore;
     let noteCardList = {};
     let filteredCards = {};
-    if (this.props.currentFolder === "all") {
+    if (this.context.folder === "all") {
       noteCardList = Object.keys(dummyNotes).map((note, i) => {
         const noteKey = `${dummyNotes[i].folderId}-${dummyNotes[i].id}`
         return (
@@ -21,14 +22,13 @@ class NoteList extends Component {
               noteName={dummyNotes[i].name}
               dateModified={dummyNotes[i].modified}
               folderId={dummyNotes[i].folderId}
-              handleNoteSelect={this.props.handleNoteSelect}
               noteId={dummyNotes[i].id}
             />
           </div>
         )
       })
     } else {
-      filteredCards = dummyNotes.filter(folder =>  folder.folderId === this.props.currentFolder)
+      filteredCards = dummyNotes.filter(folder =>  folder.folderId === this.context.folder)
       noteCardList = Object.keys(filteredCards).map((note, i) => {
         const noteKey = `${filteredCards[i].folderId}-${filteredCards[i].id}`
         return (
@@ -39,13 +39,13 @@ class NoteList extends Component {
               noteName={filteredCards[i].name}
               dateModified={filteredCards[i].modified}
               folderId={filteredCards[i].folderId}
-              handleNoteSelect={this.props.handleNoteSelect}
               noteId={filteredCards[i].id}
             />
           </div>
         )
       })
     }
+
     return (
       <main className="page-note-list">
         <ul className="page-ul">
