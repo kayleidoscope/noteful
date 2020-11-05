@@ -23,6 +23,8 @@ class NoteList extends Component {
               dateModified={dummyNotes[i].modified}
               folderId={dummyNotes[i].folderId}
               noteId={dummyNotes[i].id}
+              match={this.props.match}
+              history={this.props.history}
             />
           </div>
         )
@@ -40,6 +42,8 @@ class NoteList extends Component {
               dateModified={filteredCards[i].modified}
               folderId={filteredCards[i].folderId}
               noteId={filteredCards[i].id}
+              match={this.props.match}
+              history={this.props.history}
             />
           </div>
         )

@@ -21,8 +21,8 @@ class App extends Component {
     this.state = {
       folder: "all",
       note: "",
-      foldersStore: {},
-      notesStore: {},
+      foldersStore: [],
+      notesStore: [],
     };
   }
 
@@ -58,7 +58,7 @@ class App extends Component {
     })
   }
 
-  deleteNote = (noteId, props) => {
+  deleteNote = (noteId) => {
     const newNotes = this.state.notesStore.filter(note => 
       note.id !== noteId
     )

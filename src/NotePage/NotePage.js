@@ -13,7 +13,7 @@ class NotePage extends Component {
         const dummyNotes = this.context.notesStore;
         const currentNote = dummyNotes.find(note => note.name === noteName)
 
-        return (
+        return currentNote ? (
             <div className="folders-page-group">
                 <Sidebar
                     page="note"
@@ -29,13 +29,14 @@ class NotePage extends Component {
                             page="note"
                             noteId={currentNote.id}
                             match={this.props.match}
+                            history={this.props.history}
                         /> 
                         <NoteInfo
                             noteContent={currentNote.content}
                         />
                 </div>
             </div>
-        );
+        ) : "Note not found";
         }
 }
 

@@ -12,15 +12,18 @@ class FoldersPage extends Component {
         const folderName = this.props.match.params.folderName;
         const currentFolder = dummyFolders.find(folder => folder.name === folderName);
 
-        return (
+        return currentFolder ? (
             <div className="folders-page-group">
             <Sidebar
                 folderSidebar={true}
                 folderName={currentFolder.name}
             />
-            <NoteList/>
+            <NoteList
+                match={this.props.match}
+                history={this.props.history}
+            />
             </div>
-        );
+        ) : 'Folder not found';
         }
 }
 

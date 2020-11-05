@@ -15,7 +15,7 @@ class NoteCard extends Component {
               'content-type': 'application/json'
           }
         })
-          .then(res => {
+        .then(res => {
             if (!res.ok) {
               throw new Error(res.status)
             }
@@ -23,6 +23,9 @@ class NoteCard extends Component {
           })
           .then(data => {
             callback(noteId)
+            if (this.props.match.path.includes('note')) {
+                this.props.history.push('/')
+            }
           })
           .catch(error => {
             console.error(error)
@@ -49,7 +52,7 @@ class NoteCard extends Component {
             <p>Last modified on {dateFormatted}</p>
                 <button 
                     className="delete-button"
-                    onClick={() => this.context.handleDeleteNote(
+                    onClick={() => this.deleteNoteRequest(
                         noteId,
                         this.context.handleDeleteNote)}
                 >

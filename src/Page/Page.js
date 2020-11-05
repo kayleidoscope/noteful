@@ -11,7 +11,10 @@ class Page extends Component {
     return (
       <div className="page-group">
         <Sidebar/>
-        <NoteList />
+        <NoteList
+          match={this.props.match}
+          history={this.props.history}
+        />
       </div>
     );
   }
