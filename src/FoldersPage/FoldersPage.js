@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import NoteList from '../NoteList/NoteList';
-import PropTypes, { bool } from 'prop-types';
+import PropTypes from 'prop-types';
 import Context from '../context';
 import './FoldersPage.css';
 

@@ -33,12 +33,12 @@ class FolderList extends Component {
   render() {
     const dummyFolders = this.context.foldersStore;
     const folderCardList = Object.keys(dummyFolders).map((folder, i) => {
-      console.log(typeof dummyFolders[i].id)
       return (
-        <FolderError>
+        <FolderError
+        key={dummyFolders[i].id}
+        >
           <FolderCard
           folderName={dummyFolders[i].name}
-          key={dummyFolders[i].id}
           folderId={dummyFolders[i].id}/>
         </FolderError>
       )

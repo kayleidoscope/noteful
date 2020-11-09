@@ -45,7 +45,6 @@ class AddNote extends Component {
     }
 
     noteContentChanged(noteContent) {
-        console.log("noteContentChanged ran")
         this.setState({
             content: {
                 copy: noteContent,
