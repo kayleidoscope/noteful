@@ -1,0 +1,21 @@
+legend {
+    background-color: black;
+    color: white;
+    padding: 8px;
+}
+
+form {
+    margin: 10px;
+}
+
+.new-folder-buttons {
+    border: 2px solid;
+    padding: 5px;
+    width: 60px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}

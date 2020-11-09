@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import NoteList from '../NoteList/NoteList';
+import PropTypes, { bool } from 'prop-types';
 import Context from '../context';
 import './FoldersPage.css';
 
@@ -25,6 +26,13 @@ class FoldersPage extends Component {
             </div>
         ) : 'Folder not found';
         }
+}
+
+FoldersPage.propTypes = {
+    folderSidebar: PropTypes.bool,
+    folderName: PropTypes.string,
+    match: PropTypes.object,
+    history: PropTypes.object,
 }
 
 export default FoldersPage;

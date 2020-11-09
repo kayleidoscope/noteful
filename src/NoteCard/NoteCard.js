@@ -8,7 +8,6 @@ class NoteCard extends Component {
     static contextType = Context;
 
     deleteNoteRequest(noteId, callback) {
-        console.log("deleteNote ran")
         fetch("http://localhost:9090/notes" + `/${noteId}`, {
           method: 'DELETE',
           headers: {

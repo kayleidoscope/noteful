@@ -1,11 +1,35 @@
 import React, { Component } from 'react';
 import NoteCard from '../NoteCard/NoteCard';
 import Context from '../context';
+import AddNote from '../AddNote/AddNote';
+import PropTypes from 'prop-types';
+import NoteError from '../errorPages/NoteError';
 import '../Page/Page.css';
 import './NoteList.css';
 
 class NoteList extends Component {
   static contextType = Context;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        newNoteForm: false,
+    };
+  }
+
+  buttonToForm = (e) => {
+    e.preventDefault();
+    this.setState({
+      newNoteForm: true,
+    })
+  }
+
+  formToButton = (e) => {
+    e.preventDefault();
+    this.setState({
+      newNoteForm: false,
+    })
+  }
 
   render() {
     const dummyNotes = this.context.notesStore;
@@ -15,7 +39,7 @@ class NoteList extends Component {
       noteCardList = Object.keys(dummyNotes).map((note, i) => {
         const noteKey = `${dummyNotes[i].folderId}-${dummyNotes[i].id}`
         return (
-          <div
+          <NoteError
           key={noteKey}
           >
             <NoteCard
@@ -26,7 +50,7 @@ class NoteList extends Component {
               match={this.props.match}
               history={this.props.history}
             />
-          </div>
+          </NoteError>
         )
       })
     } else {
@@ -34,7 +58,7 @@ class NoteList extends Component {
       noteCardList = Object.keys(filteredCards).map((note, i) => {
         const noteKey = `${filteredCards[i].folderId}-${filteredCards[i].id}`
         return (
-          <div
+          <NoteError
           key={noteKey}
           >
             <NoteCard
@@ -45,22 +69,49 @@ class NoteList extends Component {
               match={this.props.match}
               history={this.props.history}
             />
-          </div>
+          </NoteError>
         )
       })
     }
 
+    if (this.state.newNoteForm) {
     return (
       <main className="page-note-list">
         <ul className="page-ul">
           {noteCardList}
         </ul>
-        <button className="addcard-button">
-          Add Card
-        </button>
+        <AddNote
+          handleFormToButton={this.formToButton}
+        />
       </main>
     );
+    } else {
+      return (
+      <main className="page-note-list">
+      <ul className="page-ul">
+        {noteCardList}
+      </ul>
+      <form onSubmit={e => this.buttonToForm(e)}>
+        <button className="addcard-button">
+          Add Note
+        </button>
+      </form>
+    </main>
+      )
+    }
   }
+}
+
+NoteList.propTypes = {
+  noteName: PropTypes.string,
+  modified: PropTypes.string,
+  dateModified: PropTypes.string,
+  folderId: PropTypes.string,
+  id: PropTypes.string,
+  noteId: PropTypes.string,
+  match: PropTypes.object,
+  history: PropTypes.object,
+  handleFormToButton: PropTypes.func,
 }
 
 export default NoteList;

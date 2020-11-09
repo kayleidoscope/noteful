@@ -9,7 +9,7 @@ class FolderCard extends Component {
   render() {
     const folderName = this.props.folderName;
     const folderId = this.props.folderId;
-    const currentFolderId = this.props.currentFolderId;
+    const currentFolderId = this.context.folder;
   return (
     <li>
         <Link 

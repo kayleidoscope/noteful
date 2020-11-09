@@ -5,15 +5,8 @@ import Page from './Page/Page';
 import FoldersPage from './FoldersPage/FoldersPage';
 import NotePage from './NotePage/NotePage';
 import Context from './context';
+import PropTypes from 'prop-types';
 
-
-/*
-
-CURRENT PROBLEMS:
-- site crashes upon refresh from FoldersPage or NotesPage
-- site crashes when "Delete Note" is clicked from NotesPage
-
-*/
 
 class App extends Component {
   constructor(props) {
@@ -67,6 +60,18 @@ class App extends Component {
     })
   }
 
+  addFolder = (newFolder) => {
+    this.setState({
+      foldersStore: [...this.state.foldersStore, newFolder]
+    })
+  }
+
+  addNote = (newNote) => {
+    this.setState({
+      notesStore: [...this.state.notesStore, newNote]
+    })
+  }
+
   componentDidMount() {
     fetch("http://localhost:9090/folders", {
       method: 'GET'
@@ -102,6 +107,8 @@ class App extends Component {
       handleFolderSelect: this.folderSelect,
       handleNoteSelect: this.noteSelect,
       handleDeleteNote: this.deleteNote,
+      handleAddFolder: this.addFolder,
+      handleAddNote: this.addNote,
     }
 
     return (
@@ -126,6 +133,10 @@ class App extends Component {
       </main>
     );
   }
+}
+
+App.propTypes = {
+  handleReset: PropTypes.func
 }
 
 export default App;

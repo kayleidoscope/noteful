@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FolderList from '../FolderList/FolderList';
 import Context from '../context';
 import GoBack from '../GoBack/GoBack';
+import PropTypes from 'prop-types';
 import '../Page/Page.css';
 import './Sidebar.css';
 
@@ -33,6 +34,10 @@ class Sidebar extends Component {
       );
     }
   }
+}
+
+Sidebar.propTypes = {
+  history: PropTypes.object,
 }
 
 export default Sidebar;
