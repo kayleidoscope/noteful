@@ -37,7 +37,11 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
+  folderSidebar: PropTypes.bool,
+  folderName: PropTypes.string,
+  page: PropTypes.string,
   history: PropTypes.object,
+  canGoBack: PropTypes.bool,
 }
 
 export default Sidebar;

@@ -103,15 +103,8 @@ class NoteList extends Component {
 }
 
 NoteList.propTypes = {
-  noteName: PropTypes.string,
-  modified: PropTypes.string,
-  dateModified: PropTypes.string,
-  folderId: PropTypes.string,
-  id: PropTypes.string,
-  noteId: PropTypes.string,
   match: PropTypes.object,
   history: PropTypes.object,
-  handleFormToButton: PropTypes.func,
 }
 
 export default NoteList;

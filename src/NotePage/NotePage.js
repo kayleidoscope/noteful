@@ -42,16 +42,8 @@ class NotePage extends Component {
 }
 
 NotePage.propTypes = {
-    page: PropTypes.string,
-    canGoBack: PropTypes.bool,
     history: PropTypes.object,
-    noteName: PropTypes.string,
-    dateModified: PropTypes.string,
-    folderId: PropTypes.string,
-    currentNote: PropTypes.string,
-    noteId: PropTypes.string,
     match: PropTypes.object,
-    noteContent: PropTypes.string,
 }
 
 export default NotePage;

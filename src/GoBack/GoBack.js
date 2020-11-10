@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './GoBack.css';
 
 export default function GoBack(props) {
@@ -13,10 +14,14 @@ export default function GoBack(props) {
         </button>
       </div>
     );
-  }
+}
 
-  GoBack.defaultProps = {
+GoBack.defaultProps = {
     history: {
       goBack: () => {}
     }
-  }
+}
+
+GoBack.propTypes = {
+  history: PropTypes.object,
+}

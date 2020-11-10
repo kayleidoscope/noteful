@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Context from '../context';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import './NoteCard.css';
 
 class NoteCard extends Component {
@@ -61,6 +62,17 @@ class NoteCard extends Component {
         </li>
       );
     }
+}
+
+NoteCard.propTypes = {
+  noteName: PropTypes.string.isRequired,
+  dateModified: PropTypes.string.isRequired,
+  folderId: PropTypes.string.isRequired,
+  noteId: PropTypes.string.isRequired,
+  currentNote: PropTypes.object,
+  match: PropTypes.object,
+  history: PropTypes.object,
+  page: PropTypes.string,
 }
 
 export default NoteCard;

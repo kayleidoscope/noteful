@@ -5,7 +5,6 @@ import Page from './Page/Page';
 import FoldersPage from './FoldersPage/FoldersPage';
 import NotePage from './NotePage/NotePage';
 import Context from './context';
-import PropTypes from 'prop-types';
 
 
 class App extends Component {
@@ -133,10 +132,6 @@ class App extends Component {
       </main>
     );
   }
-}
-
-App.propTypes = {
-  handleReset: PropTypes.func
 }
 
 export default App;

@@ -104,7 +104,10 @@ class AddNote extends Component {
         })
         .then(data => {
             this.context.handleAddNote(data);
-        });
+        })
+        .catch(error => {
+            console.error(error)
+          });
         this.props.handleFormToButton(e);
     }
 
@@ -112,7 +115,7 @@ class AddNote extends Component {
         const folderDropdown = Object.keys(this.context.foldersStore).map((folder, i) => {
             const id = this.context.foldersStore[i].id;
             const name = this.context.foldersStore[i].name;
-            return <option value={id}>{name}</option>
+            return <option value={id} key={id}>{name}</option>
         })
 
         return (
@@ -182,7 +185,7 @@ class AddNote extends Component {
 }
 
 AddNote.propTypes = {
-    message: PropTypes.string,
+    handleFormToButton: PropTypes.func,
 }
 
 export default AddNote;

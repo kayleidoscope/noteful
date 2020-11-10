@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Header.css';
 
 function Header(props) {
@@ -13,6 +14,10 @@ function Header(props) {
       </Link>
     </header>
   );
+}
+
+Header.propTypes = {
+  handleReset: PropTypes.func
 }
 
 export default Header;

@@ -53,7 +53,10 @@ class AddFolder extends Component {
         })
         .then(data => {
             this.context.handleAddFolder(data);
-        });
+        })
+        .catch(error => {
+            console.error(error)
+          });
         this.props.handleFormToButton(e);
     }
 
