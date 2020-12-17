@@ -9,18 +9,17 @@ class NoteCard extends Component {
     static contextType = Context;
 
     deleteNoteRequest(noteId, callback) {
-        fetch(`http://localhost:9090/notes/${noteId}`, {
+
+        fetch(`http://localhost:8000/api/notes/${noteId}`, {
           method: 'DELETE',
           headers: {
               'content-type': 'application/json'
           }
         })
         .then(res => {
-            if (!res.ok) {
-              throw new Error(res.status)
-            }
-            return res.json()
-          })
+          if (!res.ok) 
+            return res.json().then(error => Promise.reject(error))
+        })
           .then(data => {
             callback(noteId)
             if (this.props.match.path.includes('note')) {
@@ -66,9 +65,6 @@ class NoteCard extends Component {
 
 NoteCard.propTypes = {
   noteName: PropTypes.string.isRequired,
-  dateModified: PropTypes.string.isRequired,
-  folderId: PropTypes.string.isRequired,
-  noteId: PropTypes.string.isRequired,
   currentNote: PropTypes.object,
   match: PropTypes.object,
   history: PropTypes.object,

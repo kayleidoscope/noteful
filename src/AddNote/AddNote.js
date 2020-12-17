@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import Context from '../context';
 import ValidationError from '../ValidationError/ValidationError';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+// import moment from 'moment';
 import './AddNote.css';
 
 class AddNote extends Component {
@@ -16,7 +16,7 @@ class AddNote extends Component {
                 touched: false,
             },
             folder: {
-                name: "",
+                name: 0,
                 touched: false,
             },
             content: {
@@ -61,8 +61,8 @@ class AddNote extends Component {
     }
 
     validateFolder() {
-        const folder = this.state.folder.name.trim();
-        if (folder.length === 0) {
+        const folder = parseInt(this.state.folder.name);
+        if (typeof folder !== "number") {
             return "Please select a folder."
         }
     }
@@ -76,20 +76,17 @@ class AddNote extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const newId = Math.random().toString(36).substring(2, 4)
-        + Math.random().toString(36).substring(2, 4);
+
         const noteName = this.state.note.name;
         const noteFolder = this.state.folder.name;
         const noteContent = this.state.content.copy;
-        const dateModified = moment().format()
         const newNote = {
             content: noteContent,
-            folderId: noteFolder,
-            id: newId,
-            modified: dateModified,
+            folder: noteFolder,
             name: noteName,
         }
-        fetch("http://localhost:9090/notes", {
+        
+        fetch("http://localhost:8000/api/notes", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -103,7 +100,7 @@ class AddNote extends Component {
             return res.json()
         })
         .then(data => {
-            this.context.handleAddNote(data);
+            this.context.handleAddNote(data)
         })
         .catch(error => {
             console.error(error)

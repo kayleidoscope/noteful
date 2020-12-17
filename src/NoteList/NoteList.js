@@ -37,7 +37,7 @@ class NoteList extends Component {
     let filteredCards = {};
     if (this.context.folder === "all") {
       noteCardList = Object.keys(dummyNotes).map((note, i) => {
-        const noteKey = `${dummyNotes[i].folderId}-${dummyNotes[i].id}`
+        const noteKey = `${dummyNotes[i].folder}-${dummyNotes[i].id}`;
         return (
           <NoteError
           key={noteKey}
@@ -45,7 +45,7 @@ class NoteList extends Component {
             <NoteCard
               noteName={dummyNotes[i].name}
               dateModified={dummyNotes[i].modified}
-              folderId={dummyNotes[i].folderId}
+              folderId={dummyNotes[i].folder}
               noteId={dummyNotes[i].id}
               match={this.props.match}
               history={this.props.history}
@@ -54,9 +54,9 @@ class NoteList extends Component {
         )
       })
     } else {
-      filteredCards = dummyNotes.filter(folder =>  folder.folderId === this.context.folder)
+      filteredCards = dummyNotes.filter(folder =>  folder.folder === this.context.folder)
       noteCardList = Object.keys(filteredCards).map((note, i) => {
-        const noteKey = `${filteredCards[i].folderId}-${filteredCards[i].id}`
+        const noteKey = `${filteredCards[i].folder}-${filteredCards[i].id}`;
         return (
           <NoteError
           key={noteKey}
@@ -64,7 +64,7 @@ class NoteList extends Component {
             <NoteCard
               noteName={filteredCards[i].name}
               dateModified={filteredCards[i].modified}
-              folderId={filteredCards[i].folderId}
+              folderId={filteredCards[i].folder}
               noteId={filteredCards[i].id}
               match={this.props.match}
               history={this.props.history}

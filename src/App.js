@@ -51,12 +51,15 @@ class App extends Component {
   }
 
   deleteNote = (noteId) => {
+    console.log('deleteNote ran')
+    console.log(this.state.notesStore)
     const newNotes = this.state.notesStore.filter(note => 
       note.id !== noteId
     )
     this.setState({
       notesStore: newNotes
     })
+    console.log(this.state.notesStore)
   }
 
   addFolder = (newFolder) => {
@@ -72,7 +75,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:9090/folders", {
+    fetch("http://localhost:8000/api/folders", {
       method: 'GET'
     })
       .then(res => {
@@ -83,7 +86,7 @@ class App extends Component {
       })
       .then(responseJson => this.apiFoldersSet(responseJson))
 
-      fetch("http://localhost:9090/notes", {
+      fetch("http://localhost:8000/api/notes", {
         method: 'GET'
       })
         .then(res => {
