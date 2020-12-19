@@ -12,7 +12,10 @@ class NotePage extends Component {
     render() {
         const noteName = this.props.match.params.noteName;
         const dummyNotes = this.context.notesStore;
-        const currentNote = dummyNotes.find(note => note.name === noteName)
+        
+        const noteIndex = Object.keys(dummyNotes).find(note => dummyNotes[note].name == noteName)
+        
+       const currentNote = dummyNotes[noteIndex]
 
         return currentNote ? (
             <div className="folders-page-group">

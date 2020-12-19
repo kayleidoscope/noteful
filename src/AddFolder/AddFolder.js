@@ -3,6 +3,7 @@ import Context from '../context';
 import './AddFolder.css';
 import ValidationError from '../ValidationError/ValidationError';
 import PropTypes from 'prop-types';
+import config from '../config';
 
 class AddFolder extends Component {
     static contextType = Context;
@@ -38,7 +39,7 @@ class AddFolder extends Component {
             name: newName,
             id: newId,
         }
-        fetch("http://localhost:8000/api/folders", {
+        fetch(`${config.API_ENDPOINT}api/folders`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

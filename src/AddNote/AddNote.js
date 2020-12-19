@@ -4,6 +4,7 @@ import ValidationError from '../ValidationError/ValidationError';
 import PropTypes from 'prop-types';
 // import moment from 'moment';
 import './AddNote.css';
+import config from '../config';
 
 class AddNote extends Component {
     static contextType = Context;
@@ -86,7 +87,7 @@ class AddNote extends Component {
             name: noteName,
         }
         
-        fetch("http://localhost:8000/api/notes", {
+        fetch(`${config.API_ENDPOINT}api/notes`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

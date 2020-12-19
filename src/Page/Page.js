@@ -7,6 +7,7 @@ import './Page.css';
 class Page extends Component {
   static contextType = Context;
 
+  
   render() {
     return (
       <div className="page-group">

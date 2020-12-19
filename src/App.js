@@ -5,7 +5,7 @@ import Page from './Page/Page';
 import FoldersPage from './FoldersPage/FoldersPage';
 import NotePage from './NotePage/NotePage';
 import Context from './context';
-
+import config from './config';
 
 class App extends Component {
   constructor(props) {
@@ -52,14 +52,12 @@ class App extends Component {
 
   deleteNote = (noteId) => {
     console.log('deleteNote ran')
-    console.log(this.state.notesStore)
     const newNotes = this.state.notesStore.filter(note => 
       note.id !== noteId
     )
     this.setState({
       notesStore: newNotes
     })
-    console.log(this.state.notesStore)
   }
 
   addFolder = (newFolder) => {
@@ -75,7 +73,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8000/api/folders", {
+    fetch(`${config.API_ENDPOINT}api/folders`, {
       method: 'GET'
     })
       .then(res => {
@@ -86,7 +84,7 @@ class App extends Component {
       })
       .then(responseJson => this.apiFoldersSet(responseJson))
 
-      fetch("http://localhost:8000/api/notes", {
+      fetch(`${config.API_ENDPOINT}api/notes`, {
         method: 'GET'
       })
         .then(res => {

@@ -4,13 +4,14 @@ import Context from '../context';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import './NoteCard.css';
+import config from '../config';
 
 class NoteCard extends Component {
     static contextType = Context;
 
     deleteNoteRequest(noteId, callback) {
 
-        fetch(`http://localhost:8000/api/notes/${noteId}`, {
+        fetch(`${config.API_ENDPOINT}api/notes/${noteId}`, {
           method: 'DELETE',
           headers: {
               'content-type': 'application/json'
