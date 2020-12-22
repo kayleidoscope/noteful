@@ -10,6 +10,7 @@ class Sidebar extends Component {
   static contextType = Context;
 
   render() {
+
     if (this.props.canGoBack) {
       return (
         <aside className="page-sidebar">
@@ -17,13 +18,26 @@ class Sidebar extends Component {
         </aside>
       );
     } else if (this.props.folderSidebar) {
+      const allNotes = this.context.notesStore;
+
+      const notesInFolder = allNotes.filter(note => 
+        note.folder === this.context.folder
+      )
+
+      const numOfNotes = notesInFolder.length
+
       const folderName = this.props.folderName;
       return (
         <aside className="page-sidebar">
           <FolderList/>
           <h3 className="sidebar-folder-name">
             Folder selected: <br/>
-            {folderName}</h3>
+            {folderName}
+          </h3>
+          <p  className="sidebar-folder-name">
+            Number of Notes: <br />
+            {numOfNotes}
+          </p>
         </aside>
       );
     } else {
