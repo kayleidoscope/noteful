@@ -33,7 +33,7 @@ class FolderList extends Component {
   render() {
     const dummyFolders = this.context.foldersStore;
 
-    const folderCardList = Object.keys(dummyFolders).map((folder, i) => {
+    const folderCardList = dummyFolders.map((folder, i) => {
       return (
         <FolderError
           key={dummyFolders[i].id}
@@ -45,6 +45,19 @@ class FolderList extends Component {
         </FolderError>
       )
     })
+
+    // for (let i = 0; i < dummyFolders.length; i++) {
+    //   return (
+    //     <FolderError
+    //       key={dummyFolders[i].id}
+    //     >
+    //       <FolderCard
+    //       folderName={dummyFolders[i].name}
+    //       folderId={dummyFolders[i].id}
+    //       />
+    //     </FolderError>
+    //   )
+    // }
     
 
     if (this.state.newFolderForm) {
